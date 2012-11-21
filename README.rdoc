@@ -1,3 +1,4 @@
+
 = validate_uniqueness_of_in_memory gem
 
 Extend ActiveRecord validations by checking if entries in a form are identical. Normal rails uniqueness validations work by checking for duplicate entries in the database, but that does not work when checking for unique form values before they are submitted to the database. 
@@ -11,4 +12,6 @@ validate :validate_unique_[what you want to validate]
 def validate_unique_[what you want to validate]
   validate_uniqueness_of_in_memory([what you want to validate], [:name, :question_id], 'Validation Message.')
 end
+
+
 
