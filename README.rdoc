@@ -7,11 +7,24 @@ Extend ActiveRecord validations by checking if entries in a form are identical. 
 
 In your model:
 
-validate :validate_unique_[what you want to validate]
+class Question < ActiveRecord::Base
+  attr_accessible :name, :choices, :choices_attributes
 
-def validate_unique_[what you want to validate]
-  validate_uniqueness_of_in_memory([what you want to validate], [:name, :question_id], 'Validation Message.')
+  has_many :choices
+
+  accepts_nested_attributes_for :choices
+
+####Add the following code block to your model####
+  
+  validate :validate_unique_choices
+
+  def validate_unique_choices
+    validate_uniqueness_of_in_memory(choices, [:name, :question_id], 'Duplicate Choice.')
+  end
+
+####################
+
 end
 
 
-
+In this use case, we want to make sure each question choice is unique. 
