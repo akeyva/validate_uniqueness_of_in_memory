@@ -23,7 +23,7 @@ In the parent model (the model that ```has_many``` relationship), add the follow
       validate :validate_unique_CHILD-MODEL-NAME
 
       def validate_unique_CHILD-MODEL-NAME
-        validate_uniqueness_of_in_memory(CHILD-MODEL-NAME, [CHILD-ATTRIBUTE-TO-VALIDATE-UNIQUENESS, PARENT-ID], 'ERROR MESSAGE GOES HERE.')
+        validate_uniqueness_of_in_memory(:CHILD-MODEL-NAME, [CHILD-ATTRIBUTE-TO-VALIDATE-UNIQUENESS, PARENT-ID], 'ERROR MESSAGE GOES HERE.')
       end
 
 An example of parent model code:
@@ -37,7 +37,7 @@ An example of parent model code:
       validate :validate_unique_choices
 
       def validate_unique_choices
-        validate_uniqueness_of_in_memory(choices, [:name, :question_id], 'Choices must be unique.')
+        validate_uniqueness_of_in_memory(:choices, [:name, :question_id], 'Choices must be unique.')
       end
 
     end
