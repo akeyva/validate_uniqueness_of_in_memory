@@ -1,7 +1,7 @@
 Gem::Specification.new do |gem|
   gem.name    = 'validate_uniqueness_of_in_memory'
-  gem.version = '0.0.2'
-  gem.date = '2012-11-18'
+  gem.version = '0.0.3'
+  gem.date = '2012-12-04'
   gem.summary = 'Use this gem to validate uniqueness in memory'
 
   gem.author   = ['Akiva Leeder', 'Rex Feng']

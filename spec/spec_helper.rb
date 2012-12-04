@@ -1,7 +1,5 @@
 require 'rubygems'
 
-require 'debugger'
-
 require 'sqlite3'
 require 'active_record'
 require 'active_model'
