@@ -42,8 +42,6 @@ require 'spec_helper'
 describe 'Question has Choices relationship WITH validate_uniqueness_of_in_memory' do
 
   class Question < ActiveRecord::Base
-    include ValidatesUniquenessOfInMemory
-    attr_accessible :name, :choices, :choices_attributes
     has_many :choices
     accepts_nested_attributes_for :choices
 
@@ -56,22 +54,22 @@ describe 'Question has Choices relationship WITH validate_uniqueness_of_in_memor
   end
 
   class Choice < ActiveRecord::Base
-    attr_accessible :choice_name, :question_id
     belongs_to :question
   end
 
   let(:question) { Question.new(:name => "What song is this?") }
-  let(:choice_a) { question.choices.build(:choice_name => "Thriller") }
-  let(:choice_b) { question.choices.build(:choice_name => "Eye of the Tiger") }
-  let(:choice_c) { question.choices.build(:choice_name => "Thriller") }
 
   it "should create new a question with a name" do
-    question.save.should_not be_true
+    question.save.should be_truthy
     question.name.should eq("What song is this?")
   end
 
   it "should not save duplicate choices for the same question" do
-    # choice_a.save.should be_true
+    question.choices.build(:choice_name => "Thriller")
+    question.choices.build(:choice_name => "Eye of the Tiger")
+    question.should be_valid
+
+    question.choices.build(:choice_name => "Thriller")
     question.should_not be_valid
     question.errors[:base].should include 'Choices must be unique.'
   end
