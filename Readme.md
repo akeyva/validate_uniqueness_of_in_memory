@@ -12,7 +12,7 @@ For example, in a Question model that has_many Choices, this gem will throw an e
 
 Include gem in your ```Gemfile```
 
-    gem "validate_uniqueness_of_in_memory
+    gem "validate_uniqueness_of_in_memory"
 
 In the command line, run ```bundle```. You should see "Installing validate_uniqueness_of_in_memory (0.0.X)", where X is the current gem version.
 
@@ -45,8 +45,6 @@ An example of parent model code:
 An example of child model code:
 
     class Choice < ActiveRecord::Base
-      attr_accessible :name, :question_id
-
       belongs_to :question
     end
 
